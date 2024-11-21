@@ -116,6 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4214620395122609291}
+  - component: {fileID: 7826892576659183597}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -140,6 +141,18 @@ Transform:
   - {fileID: 4429000266993433490}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7826892576659183597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161857524828788916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207087bc13c84dd48a5a64812b1c017f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8665135766478179797
 GameObject:
   m_ObjectHideFlags: 0

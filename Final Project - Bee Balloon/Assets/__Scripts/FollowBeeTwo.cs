@@ -6,7 +6,7 @@ public class FollowBeeTwo : MonoBehaviour
 {
     public float speed = 40f;  // Speed of movement
     private Rigidbody rb;
-    bool isMoving = true;
+    //bool isMoving = true;
 
     private Vector3 lastSafe;
 
