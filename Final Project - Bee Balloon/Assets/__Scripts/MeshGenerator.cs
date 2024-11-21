@@ -27,6 +27,10 @@ public class MeshGenerator : MonoBehaviour
             new Vector3 (0, 0, 1),
             new Vector3 (1, 0, 0)
         };
+
+        triangles = new int[] {
+            0, 1, 2,
+        };
     }
 
     void Updatemesh()
