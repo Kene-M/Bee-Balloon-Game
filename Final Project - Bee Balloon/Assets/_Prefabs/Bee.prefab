@@ -136,7 +136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.21678266, w: 0.9762199}
   m_LocalPosition: {x: 0.055385824, y: -0.5665022, z: 1.1235504}
-  m_LocalScale: {x: 0.03165147, y: 0.2292673, z: 0.04966261}
+  m_LocalScale: {x: -0.03165147, y: -0.22926727, z: -0.049662612}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7528085813823787678}
@@ -241,7 +241,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.8612503, w: 0.5081811}
   m_LocalPosition: {x: 0.17238583, y: -1.0185022, z: 1.096}
-  m_LocalScale: {x: 0.29798222, y: 0.21473344, z: 0.40073}
+  m_LocalScale: {x: 0.29798222, y: 0.21473344, z: -0.40073}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7528085813823787678}
@@ -348,7 +348,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.00038582482, y: -1.0385022, z: 1.1295505}
-  m_LocalScale: {x: 0.3087973, y: 0.3822, z: 0.4739144}
+  m_LocalScale: {x: 0.3087973, y: 0.3822, z: -0.47391444}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7528085813823787678}
@@ -455,7 +455,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.8612502, y: -0.5081811, z: -0.0000025257466, w: 0.0000014901159}
   m_LocalPosition: {x: -0.19161418, y: -1.0345023, z: 1.137}
-  m_LocalScale: {x: 0.29798222, y: 0.21473345, z: 0.40073}
+  m_LocalScale: {x: 0.29798222, y: 0.21473345, z: -0.40073}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7528085813823787678}
@@ -562,7 +562,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.2667672, w: 0.96376103}
   m_LocalPosition: {x: -0.09161417, y: -0.5565022, z: 1.1235504}
-  m_LocalScale: {x: 0.03165147, y: 0.2292673, z: 0.04966261}
+  m_LocalScale: {x: -0.031651475, y: -0.22926728, z: -0.049662612}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7528085813823787678}
@@ -753,12 +753,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7528085813823787678}
   - component: {fileID: 5901581747775967779}
-<<<<<<< Updated upstream
   - component: {fileID: -328752558928968282}
   - component: {fileID: 2263376138835851331}
-=======
-  - component: {fileID: -1143788760363211356}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Bee
   m_TagString: Untagged
@@ -815,7 +811,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-<<<<<<< Updated upstream
 --- !u!136 &-328752558928968282
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -840,9 +835,6 @@ CapsuleCollider:
   m_Direction: 1
   m_Center: {x: 0, y: -1, z: 1}
 --- !u!114 &2263376138835851331
-=======
---- !u!114 &-1143788760363211356
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
