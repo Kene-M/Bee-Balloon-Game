@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - RestrictedArea
+  - Balloon
   layers:
   - Default
   - TransparentFX
