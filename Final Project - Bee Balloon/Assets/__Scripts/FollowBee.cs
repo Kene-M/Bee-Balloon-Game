@@ -114,10 +114,12 @@ public class FollowBee : MonoBehaviour
         mousePos3D.y += .5f;
         mousePos3D.z += -1f;
 
+        Vector3 mouseDelta = mousePos3D - lastTransform;
 
+        mouseDelta = new Vector3(Mathf.Abs(mouseDelta.x), Mathf.Abs(mouseDelta.y), Mathf.Abs(mouseDelta.z));
 
         // Check if the mouse is inside the restricted area
-        if (IsMouseInsideArea(mousePos3DBeforeUpdate, rColl))
+        if (IsMouseInsideArea(mousePos3DBeforeUpdate, rColl) && mouseDelta.x <= .5f && mouseDelta.y <= .5f && mouseDelta.z <= .5f )
         {
             Debug.Log("Mouse is inside the restricted area!");
             
