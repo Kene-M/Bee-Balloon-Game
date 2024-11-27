@@ -121,7 +121,7 @@ public class FollowBee : MonoBehaviour
         // Check if the mouse is inside the restricted area
         if (IsMouseInsideArea(mousePos3DBeforeUpdate, rColl) && mouseDelta.x <= .5f && mouseDelta.y <= .5f && mouseDelta.z <= .5f )
         {
-            Debug.Log("Mouse is inside the restricted area!");
+            //Debug.Log("Mouse is inside the restricted area!");
             
 
             transform.position = mousePos3D;
@@ -148,6 +148,31 @@ public class FollowBee : MonoBehaviour
         }
 
         return false; // Not inside any collider
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the object collided with has the tag "redzone"
+        if (other.CompareTag("redzone"))
+        {
+            Debug.Log("Bee collided with a red zone!");
+
+            // Life counter decrement...
+
+        }
+
+        // Check if balloon.
+        else if (other.CompareTag("Balloon"))
+        {
+            // Destroy balloon
+            Destroy(other.gameObject);
+
+            // Award points...
+
+        }
+
+        // Check if bomb (lose points on bomb hit???).
+
     }
 }
 
