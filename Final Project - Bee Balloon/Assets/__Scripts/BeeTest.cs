@@ -63,14 +63,15 @@ using UnityEngine;
 
 public class BeeTest : MonoBehaviour
 {
-    public float maxSpeed;       // Maximum speed at which the bee moves
+    public float maxSpeed = 15f;       // Maximum speed at which the bee moves
+    public float smoothFactor = 15f; // How quickly the bee adjusts its velocity
     public float stopDistance;   // Distance threshold to stop the bee
 
     private Rigidbody rb;
 
     void Start()
     {
-        maxSpeed = 10f;
+        //maxSpeed = 10f;
         stopDistance = 0.1f;
 
         // Get the Rigidbody component
@@ -96,10 +97,15 @@ public class BeeTest : MonoBehaviour
         if (distanceToTarget > stopDistance)
         {
             // Scale speed by distance, capping it at maxSpeed
-            float scaledSpeed = Mathf.Clamp(distanceToTarget, 0, maxSpeed);
+            //float scaledSpeed = Mathf.Clamp(distanceToTarget, 0, maxSpeed);
 
             // Apply velocity to move towards the target
-            rb.velocity = direction * scaledSpeed;
+            //rb.velocity = direction * scaledSpeed;
+
+
+            // Smoothly interpolate the current velocity towards the desired velocity
+            Vector3 desiredVelocity = direction * maxSpeed;
+            rb.velocity = Vector3.Lerp(rb.velocity, desiredVelocity, smoothFactor * Time.fixedDeltaTime);
         }
         else
         {
