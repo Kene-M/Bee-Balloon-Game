@@ -156,6 +156,7 @@ public class FollowBee : MonoBehaviour
         if (other.CompareTag("redzone"))
         {
             Debug.Log("Bee collided with a red zone!");
+            Destroy(gameObject);
 
             // Life counter decrement...
 
@@ -170,6 +171,8 @@ public class FollowBee : MonoBehaviour
             // Award points...
 
         }
+
+       
 
         // Check if bomb (lose points on bomb hit???).
 

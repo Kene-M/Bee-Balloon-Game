@@ -113,4 +113,27 @@ public class BeeTest : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the object collided with has the tag "redzone"
+        if (other.CompareTag("redzone"))
+        {
+            //Debug.Log("Bee collided with a red zone!");
+            Destroy(gameObject);
+
+            // Life counter decrement...
+
+        }
+
+        // Check if balloon.
+        else if (other.CompareTag("Balloon"))
+        {
+            // Destroy balloon
+            Destroy(other.gameObject);
+
+            // Award points...
+
+        }
+    }
 }
