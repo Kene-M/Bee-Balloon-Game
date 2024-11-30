@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7075096503421368273, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -930,7 +930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -1123,7 +1123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -1427,7 +1427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -4796,7 +4796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -5233,7 +5233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -5732,7 +5732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -6434,7 +6434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -6945,7 +6945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -7795,7 +7795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -7982,7 +7982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -8064,7 +8064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -9102,7 +9102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -9873,7 +9873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -12071,7 +12071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -12523,7 +12523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471920654264924920, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3751125474730336913, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalScale.x
