@@ -8,6 +8,7 @@ TagManager:
   - RestrictedArea
   - Balloon
   - redzone
+  - Bomb
   layers:
   - Default
   - TransparentFX
