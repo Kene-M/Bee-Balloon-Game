@@ -88,10 +88,12 @@ public class BeeTest : MonoBehaviour
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 
         // Calculate direction from the bee to the target position
-        Vector3 direction = (targetPosition - transform.position).normalized;
+        //Vector3 direction = (targetPosition - transform.position).normalized;
+        Vector3 direction = (targetPosition - new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z)).normalized; // Make the bee closer to the mouse.
 
         // Calculate distance to the target
-        float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
+        //float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
+        float distanceToTarget = Vector3.Distance(new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z), targetPosition); // Make the bee closer to the mouse.
 
         // Stop moving if the bee is close to the target position
         if (distanceToTarget > stopDistance)
@@ -140,9 +142,9 @@ public class BeeTest : MonoBehaviour
         else if (other.CompareTag("Bomb"))
         {
             Destroy(other.transform.parent.gameObject);
-            
-            //Destroy(gameObject);
-            // Lose points instead
+            Destroy(gameObject);
+
+            // Life counter decrement...
 
         }
     }

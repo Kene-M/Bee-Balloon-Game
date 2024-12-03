@@ -155,12 +155,11 @@ public class FollowBee : MonoBehaviour
         // Check if the object collided with has the tag "redzone"
         if (other.CompareTag("redzone"))
         {
-            Debug.Log("Bee collided with a red zone!");
+            //Debug.Log("Bee collided with a red zone!");
             Destroy(gameObject);
 
             // Life counter decrement...
 
-            // Respawn...
         }
 
         // Check if balloon.
@@ -177,9 +176,9 @@ public class FollowBee : MonoBehaviour
         else if (other.CompareTag("Bomb"))
         {
             Destroy(other.transform.parent.gameObject);
+            Destroy(gameObject);
 
-            //Destroy(gameObject);
-            // Lose points instead
+            // Life counter decrement...
 
         }
     }

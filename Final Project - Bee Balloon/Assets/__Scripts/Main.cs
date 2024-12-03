@@ -8,55 +8,63 @@ using UnityEngine.UIElements;
 
 public class Main : MonoBehaviour
 {
-    static public Main S;                        // A private singleton for Main
+    static public Main S;                        // A public singleton for Main
     private BoundsCheck bndCheck;
 
     [Header("Inscribed")]
     public TextMeshProUGUI uitScore;
     public TextMeshProUGUI uitLevel;
+    public TextMeshProUGUI uitBees;
+    public TextMeshProUGUI uitCountdown;
+    public TextMeshProUGUI levelChangeText;
+
+    public AudioClip levelUpClip;
+    public AudioClip levelDownClip;
+    public AudioClip onSuccessClip; // Audio to play on successful crate destruction
+    public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
+
+    // REMOVE *****
     public TextMeshProUGUI uitHighScore;
     public TextMeshProUGUI uitSBullets;
     public TextMeshProUGUI uitDBullets;
     public TextMeshProUGUI uitFBullets;
     public TextMeshProUGUI uitCrates;
-    public TextMeshProUGUI uitCountdown;
-    public TextMeshProUGUI levelChangeText;
-    public AudioClip levelUpClip;
-    public AudioClip levelDownClip;
-    public AudioClip onSuccessClip; // Audio to play on successful crate destruction
-    public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
     public GameObject[] prefabCrates;               // Array of Crate prefabs 
     public float crateSpawnPerSecond = 0.5f;  // # Crates spawned/second
     public float crateInsetDefault = 1.5f;    // Inset from the sides
 
     [Header("Dynamic")]
+    
     public int currentScore;
     public int level;
     public int levelMax;
-    public int numCurrSpawnedCrates;
+    // ...
+    
+    private AudioSource audioSource; // Audio on level up
+    private float startTime; // For countdown.
+    private int timeRemain; // For countdown.
+    public string finalMessage; // Message to display at end scene
+
+    // Level Related Attributes
+    // ...
+    public int[] goals; // Set the goals for each level.
+                        // Goals are based on number of *correctly* destroyed crates.
+
+
+    // ****** REMOVE *******
     public int highScore;
+    public int numCurrSpawnedCrates;
     public int remainingCrates; // Number of crates left to destroy.
     public int numDestroyedCrates; // TOTAL crates destroyed in this level
-    public int numCorrectlyDestroyedCrates; // For keeping track of the goal conditions
-                                            // A crate is correctly destroyed if its crate value reaches exactly 0.
+    public int numCorrectlyDestroyedCrates; // For keeping track of the goal conditions. // A crate is correctly destroyed if its crate value reaches exactly 0.
     public int pointsPerSBullet = 1; // Strength of bullets from input "S"
     public int pointsPerDBullet = 2;
     public int pointsPerFBullet = 3;
-    private AudioSource audioSource;
-
-    // Level Related Attributes
     public int[] maxCrates; // Max number of crates to spawn per level
     public int[] maxBulletsPerLevel;
     public int[] remainingSBullets; // Number of "S" shots remaining, per level
     public int[] remainingDBullets;
     public int[] remainingFBullets;
-    public int[] goals; // Set the goals for each level.
-                        // Goals are based on number of *correctly* destroyed crates.
-    public string finalMessage; // Message yto display at end scene
-
-    private float startTime; // For countdown.
-    private int timeRemain; // For countdown.
-
 
     void Awake()
     {
