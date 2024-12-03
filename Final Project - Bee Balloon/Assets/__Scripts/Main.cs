@@ -34,11 +34,12 @@ public class Main : MonoBehaviour
     public float crateInsetDefault = 1.5f;    // Inset from the sides
 
     [Header("Dynamic")]
-    
     public int currentScore;
     public int level;
     public int levelMax;
-    // ...
+    public int remainingBalloons; // Number of balloons left to destroy.
+    public int numDestroyedBalloons; // TOTAL crates destroyed in this level
+    public int pointsPerBalloon = 2; // Points per balloon pop
     
     private AudioSource audioSource; // Audio on level up
     private float startTime; // For countdown.
@@ -46,9 +47,7 @@ public class Main : MonoBehaviour
     public string finalMessage; // Message to display at end scene
 
     // Level Related Attributes
-    // ...
-    public int[] goals; // Set the goals for each level.
-                        // Goals are based on number of *correctly* destroyed crates.
+    public int[] goals; // Set the goals for each level. Goals are based on number of destroyed balloons.
 
 
     // ****** REMOVE *******
@@ -81,30 +80,31 @@ public class Main : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         levelChangeText.enabled = false;
 
-        maxBulletsPerLevel = new int[] { 50, 30, 20 };
+        // LEVEL DESIGN INITIALIZATION.
+        /*maxBulletsPerLevel = new int[] { 50, 30, 20 };
         remainingSBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
         remainingDBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
         remainingFBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
         maxCrates = new int[] { 9, 12, 15 };
-        goals = new int[] { 5, 7, 8 }; // Destroy more than half of the crates to reach this goal
+        goals = new int[] { 5, 7, 8 }; // Destroy more than half of the crates to reach this goal*/
 
         // Playerprefs for highscore
-        if (PlayerPrefs.HasKey("HighScore"))
+        /*if (PlayerPrefs.HasKey("HighScore"))
         {
             SCORE = PlayerPrefs.GetInt("HighScore");
         }
         // Assign the high score to HighScore
-        PlayerPrefs.SetInt("HighScore", SCORE);
+        PlayerPrefs.SetInt("HighScore", SCORE);*/
 
 
         // Set bndCheck to reference the BoundsCheck component on this GameObject
         bndCheck = GetComponent<BoundsCheck>();
 
         // Invoke SpawnCrate() once (in 2 seconds, based on default values)
-        Invoke(nameof(SpawnCrate), 2f);                // a
+        //Invoke(nameof(SpawnCrate), 2f);                // a
     }
 
-    public void SpawnCrate()
+    /*public void SpawnCrate()
     {
         // Pick a random Crate prefab to instantiate
         int ndx = Random.Range(0, prefabCrates.Length);                     // b
@@ -133,7 +133,7 @@ public class Main : MonoBehaviour
             // Invoke SpawnCrate() in specified time
             Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);                // g
         }
-    }
+    }*/
 
     // For showing the data in the GUITexts
     void UpdateGUI()
@@ -148,7 +148,7 @@ public class Main : MonoBehaviour
         // Countdown logic
         int timeElapsed = (int)(Time.time - startTime);
         //print(timeElapsed);
-        timeRemain = 180 - timeElapsed; // 3 minute countdown
+        timeRemain = 240 - timeElapsed; // 4 minute countdown
 
         if (timeRemain > 0)
         {
@@ -164,7 +164,7 @@ public class Main : MonoBehaviour
         }
 
         Color c = uitCountdown.color;
-        c.a = timeRemain / 180f;
+        c.a = timeRemain / 240f;
         uitCountdown.color = c;
     }
 
@@ -196,7 +196,7 @@ public class Main : MonoBehaviour
                     Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
 
                     // Invoke SpawnCrate() in specified time
-                    Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
+                    //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
                 }
                 // Beat the game.
                 else
@@ -204,7 +204,7 @@ public class Main : MonoBehaviour
                     // call gameover screen 
                     finalMessage = "Congrats, you beat the game!\n" + timeRemain.ToString() + " leftover secs have been added your final score.";
                     currentScore += timeRemain;
-                    TRY_TO_SET_HIGH_SCORE(currentScore);
+                    //TRY_TO_SET_HIGH_SCORE(currentScore);
                     SceneManager.LoadScene("GameOverScreen");
                 }
             }
@@ -230,7 +230,7 @@ public class Main : MonoBehaviour
                     Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
 
                     // Invoke SpawnCrate() in specified time
-                    Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
+                    //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
                 }
                 // Level too low, game over.
                 else
@@ -269,7 +269,7 @@ public class Main : MonoBehaviour
         if (currentScore < 0) 
             currentScore = 0;
 
-        TRY_TO_SET_HIGH_SCORE(currentScore);
+        // TRY_TO_SET_HIGH_SCORE(currentScore);
     }
 
     void HideLevelChangeGraphic()
@@ -277,13 +277,13 @@ public class Main : MonoBehaviour
         levelChangeText.enabled = false;
     }
 
-    public void TRY_TO_SET_HIGH_SCORE(int scoreToTry)
+    /*public void TRY_TO_SET_HIGH_SCORE(int scoreToTry)
     {
         if (scoreToTry <= SCORE) return;
         SCORE = scoreToTry;
-    }
+    }*/
 
-    public int SCORE
+    /*public int SCORE
     { 
         get { return highScore; } 
         private set 
@@ -295,5 +295,5 @@ public class Main : MonoBehaviour
                 uitHighScore.text = "High Score: " + value.ToString();            
             }
         }
-    }
+    }*/
 }
