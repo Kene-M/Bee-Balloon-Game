@@ -160,6 +160,7 @@ public class FollowBee : MonoBehaviour
 
             // Life counter decrement...
 
+            // Respawn...
         }
 
         // Check if balloon.
@@ -172,10 +173,15 @@ public class FollowBee : MonoBehaviour
 
         }
 
-       
+        // Check if bomb 
+        else if (other.CompareTag("Bomb"))
+        {
+            Destroy(other.transform.parent.gameObject);
 
-        // Check if bomb (lose points on bomb hit???).
+            //Destroy(gameObject);
+            // Lose points instead
 
+        }
     }
 }
 

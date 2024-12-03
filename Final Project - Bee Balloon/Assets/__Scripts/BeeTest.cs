@@ -125,16 +125,25 @@ public class BeeTest : MonoBehaviour
             // Life counter decrement...
 
         }
+
         // Check if balloon.
         else if (other.CompareTag("Balloon"))
         {
             // Destroy balloon
             Destroy(other.gameObject);
+
+            // Award points...
+
         }
+
+        // Check if bomb 
         else if (other.CompareTag("Bomb"))
         {
             Destroy(other.transform.parent.gameObject);
-            Destroy(gameObject);
+            
+            //Destroy(gameObject);
+            // Lose points instead
+
         }
     }
 }
