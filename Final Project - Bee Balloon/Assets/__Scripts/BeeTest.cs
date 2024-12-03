@@ -122,7 +122,7 @@ public class BeeTest : MonoBehaviour
         if (other.CompareTag("redzone"))
         {
             //Debug.Log("Bee collided with a red zone!");
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
             // Life counter decrement...
 
@@ -142,8 +142,8 @@ public class BeeTest : MonoBehaviour
         else if (other.CompareTag("Bomb"))
         {
             Destroy(other.transform.parent.gameObject);
-            Destroy(gameObject);
-
+            //Destroy(gameObject);
+            Debug.Log("Bee collided with a bomb!");
             // Life counter decrement...
 
         }
