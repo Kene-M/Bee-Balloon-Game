@@ -6,21 +6,19 @@ using UnityEngine.UI;
 
 public class MainBeeScript : MonoBehaviour
 {
-    public GameObject BeePrefab;
+    //public GameObject BeePrefab;
     public Button spawnButton;
 
     
 
     public void SpawnPrefab()
     {
-        if (BeePrefab != null)
-        {
-            BeePrefab.SetActive(true);
-            spawnButton.gameObject.SetActive(false); 
-        }
-        else
-        {
-            Debug.LogError("Prefab not assigned");
-        }
+        //BeePrefab.SetActive(true);
+        spawnButton.gameObject.SetActive(false); 
+        //}
+        //else
+        //{
+        //    Debug.LogError("Prefab not assigned");
+        //}
     }
 }

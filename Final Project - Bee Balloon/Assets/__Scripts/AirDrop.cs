@@ -57,11 +57,11 @@ public class AirDrop : MonoBehaviour
         {             // a
             Destroy(gameObject);
 
-            Main.S.ON_DESTROY(-score); // Deduct points
+            //Main.S.ON_DESTROY(-score); // Deduct points
 
             if (Main.S.remainingCrates > 0)
             {
-                Main.S.remainingCrates--;
+                Main.S.remainingCrates--; 
             }
 
             // Acknowledge crate destruction
@@ -98,14 +98,14 @@ public class AirDrop : MonoBehaviour
 
                 if (crateValue == 0)
                 {
-                    Main.S.ON_DESTROY(score); // Grant points
+                    //Main.S.ON_DESTROY(score); // Grant points
                     Main.S.numCorrectlyDestroyedCrates++; // Acknowledge correctly destroyed crate
 
                     //onSuccessAudio.PlayOneShot(Main.S.onSuccessClip); // Play success audio clip
                 }
                 else
                 {
-                    Main.S.ON_DESTROY(-score); // Deduct points
+                    //Main.S.ON_DESTROY(-score); // Deduct points
 
                     // Play fail audio clip
                 }

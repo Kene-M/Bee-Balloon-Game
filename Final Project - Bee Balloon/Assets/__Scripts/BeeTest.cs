@@ -70,7 +70,7 @@ public class BeeTest : MonoBehaviour
 
     private Rigidbody rb;
 
-    public Button respawnButton;
+    // public Button respawnButton;
 
     public Vector3 spawnPosition;
 
@@ -80,7 +80,7 @@ public class BeeTest : MonoBehaviour
    
     void Start()
     {
-        respawnButton.gameObject.SetActive(false);
+        Main.S.spawnButton.gameObject.SetActive(false);
         //maxSpeed = 10f;
         stopDistance = 0.1f;
 
@@ -137,12 +137,14 @@ public class BeeTest : MonoBehaviour
             //Debug.Log("Bee collided with a red zone!");
             //Destroy(gameObject);
 
-            //Life counter decrement...
+            // Life counter decrement
+            Main.S.numBees--;
+
+            // Reset position of bee and prompt a restart button.
             transform.position = spawnPosition;
             transform.rotation = spawnRotation;
             this.gameObject.SetActive(false);
-            respawnButton.gameObject.SetActive(true);
-            
+            Main.S.spawnButton.gameObject.SetActive(true);
         }
 
         // Check if balloon.
@@ -150,9 +152,10 @@ public class BeeTest : MonoBehaviour
         {
             // Destroy balloon
             Destroy(other.gameObject);
+            Main.S.numDestroyedBalloons++;
 
-            // Award points...
-
+            // Award points
+            Main.S.AwardPoints();
         }
 
         // Check if bomb 
@@ -161,14 +164,15 @@ public class BeeTest : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
             //Destroy(gameObject);
             Debug.Log("Bee collided with a bomb!");
-            // Life counter decrement...
 
+            // Life counter decrement
+            Main.S.numBees--;
 
+            // Reset position of bee and prompt a restart button.
             transform.position = spawnPosition;
             transform.rotation = spawnRotation;
-            respawnButton.gameObject.SetActive(true);
+            Main.S.spawnButton.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
-            
         }
     }
 }
