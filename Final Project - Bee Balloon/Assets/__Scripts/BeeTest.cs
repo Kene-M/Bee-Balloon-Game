@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //public class BeeTest : MonoBehaviour
 //{
@@ -69,13 +70,25 @@ public class BeeTest : MonoBehaviour
 
     private Rigidbody rb;
 
+    public Button respawnButton;
+
+    public Vector3 spawnPosition;
+
+    public Quaternion spawnRotation;
+
+        
+   
     void Start()
     {
+        respawnButton.gameObject.SetActive(false);
         //maxSpeed = 10f;
         stopDistance = 0.1f;
 
         // Get the Rigidbody component
         rb = GetComponent<Rigidbody>();
+
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
     }
 
     void FixedUpdate()
@@ -124,8 +137,12 @@ public class BeeTest : MonoBehaviour
             //Debug.Log("Bee collided with a red zone!");
             //Destroy(gameObject);
 
-            // Life counter decrement...
-
+            //Life counter decrement...
+            transform.position = spawnPosition;
+            transform.rotation = spawnRotation;
+            this.gameObject.SetActive(false);
+            respawnButton.gameObject.SetActive(true);
+            
         }
 
         // Check if balloon.
@@ -146,6 +163,12 @@ public class BeeTest : MonoBehaviour
             Debug.Log("Bee collided with a bomb!");
             // Life counter decrement...
 
+
+            transform.position = spawnPosition;
+            transform.rotation = spawnRotation;
+            respawnButton.gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
+            
         }
     }
 }

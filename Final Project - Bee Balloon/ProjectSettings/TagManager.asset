@@ -9,6 +9,7 @@ TagManager:
   - Balloon
   - redzone
   - Bomb
+  - RespawnButton
   layers:
   - Default
   - TransparentFX

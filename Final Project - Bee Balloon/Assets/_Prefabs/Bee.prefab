@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 7528085813823787678}
   - component: {fileID: 5901581747775967779}
   - component: {fileID: -328752558928968282}
-  - component: {fileID: 2263376138835851331}
+  - component: {fileID: 6712358463986069498}
   m_Layer: 0
   m_Name: Bee
   m_TagString: Untagged
@@ -834,7 +834,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: -1, z: 1}
---- !u!114 &2263376138835851331
+--- !u!114 &6712358463986069498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -843,7 +843,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6598476850549558685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e29543851eba9479ba39e7af72d543, type: 3}
+  m_Script: {fileID: 11500000, guid: fdc5720a69cd641479b319e68929a4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rColl: {fileID: 0}
+  maxSpeed: 15
+  smoothFactor: 15
+  stopDistance: 0
+  respawnButton: {fileID: 0}
