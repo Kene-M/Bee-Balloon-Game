@@ -18,12 +18,13 @@ public class Main : MonoBehaviour
     public TextMeshProUGUI uitCountdown;
     public TextMeshProUGUI levelChangeText;
 
+    public GameObject[] prefabLevels; // Array of level prefabs
     public AudioClip levelUpClip;
     public AudioClip levelDownClip;
     public AudioClip onSuccessClip; // Audio to play on successful crate destruction
     public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
 
-    // REMOVE *****
+    // ****** REMOVE *****
     public TextMeshProUGUI uitHighScore;
     public TextMeshProUGUI uitSBullets;
     public TextMeshProUGUI uitDBullets;
@@ -37,18 +38,19 @@ public class Main : MonoBehaviour
     public int currentScore;
     public int level;
     public int levelMax;
-    public int remainingBalloons; // Number of balloons left to destroy.
+    public int numBees; // current bees
+    public int maxBees; // max bees.
+    public int remainingBalloons; // Number of balloons currently left to destroy.
     public int numDestroyedBalloons; // TOTAL crates destroyed in this level
     public int pointsPerBalloon = 2; // Points per balloon pop
     
     private AudioSource audioSource; // Audio on level up
     private float startTime; // For countdown.
     private int timeRemain; // For countdown.
-    public string finalMessage; // Message to display at end scene
+    public string finalMessage; // Message to display at end scene.
 
     // Level Related Attributes
-    public int[] goals; // Set the goals for each level. Goals are based on number of destroyed balloons.
-
+    public int[] maxBalloons; // Max number of balloons per level.
 
     // ****** REMOVE *******
     public int highScore;
@@ -64,24 +66,33 @@ public class Main : MonoBehaviour
     public int[] remainingSBullets; // Number of "S" shots remaining, per level
     public int[] remainingDBullets;
     public int[] remainingFBullets;
+    public int[] goals; // Set the goals for each level. Goals are based on number of correctly destroyed crates.
 
     void Awake()
     {
         S = this; // Define the singleton
 
+        // Level Design.
+        maxBalloons = new int[] { 67 };
+
         level = 0;
-        levelMax = 3;
+        levelMax = 1;
+        maxBees = 3;
+        numBees = maxBees;
         currentScore = 0;
-        numCurrSpawnedCrates = 0;
-        remainingCrates = maxCrates[level];
-        numDestroyedCrates = 0;
-        numCorrectlyDestroyedCrates = 0;
+        remainingBalloons = maxBalloons[level];
+        numDestroyedBalloons = 0;
+
         startTime = Time.time;
         audioSource = GetComponent<AudioSource>();
         levelChangeText.enabled = false;
 
-        // LEVEL DESIGN INITIALIZATION.
-        /*maxBulletsPerLevel = new int[] { 50, 30, 20 };
+        //remainingCrates = maxCrates[level];
+        //numDestroyedCrates = 0;
+        //numCorrectlyDestroyedCrates = 0;
+        
+        /* // Level design
+        maxBulletsPerLevel = new int[] { 50, 30, 20 };
         remainingSBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
         remainingDBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
         remainingFBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
@@ -140,10 +151,12 @@ public class Main : MonoBehaviour
     {
         uitScore.text = "Score: " + currentScore.ToString();
         uitLevel.text = "Level: " + (level+1).ToString() + " of " + levelMax.ToString();
-        uitSBullets.text = "S (1): " + remainingSBullets[level].ToString();
-        uitDBullets.text = "D (2): " + remainingDBullets[level].ToString();
-        uitFBullets.text = "F (3): " + remainingFBullets[level].ToString();
-        uitCrates.text = "Crates Left: " + remainingCrates.ToString();
+        uitBees.text = "Bees Left: " + numBees.ToString();
+
+        //uitSBullets.text = "S (1): " + remainingSBullets[level].ToString();
+        //uitDBullets.text = "D (2): " + remainingDBullets[level].ToString();
+        //uitFBullets.text = "F (3): " + remainingFBullets[level].ToString();
+        //uitCrates.text = "Crates Left: " + remainingCrates.ToString();
 
         // Countdown logic
         int timeElapsed = (int)(Time.time - startTime);
@@ -173,78 +186,142 @@ public class Main : MonoBehaviour
         UpdateGUI();
 
         // Check for level completion
-        if (numDestroyedCrates == maxCrates[level])
+        if (numDestroyedBalloons == maxBalloons[level])
         {
-            // Check for level up
-            if ((numCorrectlyDestroyedCrates >= goals[level])) 
+            // Check for non-max level.
+            if ((level + 1) < levelMax)
             {
-                if ((level + 1) < levelMax)
-                {
-                    level++;
-                    numDestroyedCrates = 0;
-                    numCorrectlyDestroyedCrates = 0;
-                    numCurrSpawnedCrates = 0;
-                    remainingCrates = maxCrates[level];
-                    remainingSBullets[level] = maxBulletsPerLevel[level];
-                    remainingDBullets[level] = maxBulletsPerLevel[level];
-                    remainingFBullets[level] = maxBulletsPerLevel[level];
+                level++;
+                numBees = maxBees;
+                numDestroyedBalloons = 0;
+                remainingBalloons = maxBalloons[level];
 
-                    // Level up pop up sound and graphics
-                    audioSource.PlayOneShot(levelUpClip);
-                    levelChangeText.enabled = true;
-                    levelChangeText.text = "Level Up!\nReached Level " + (level+1).ToString() + "!";
-                    Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
+                // ****** INSTANTIATE A LEVEL PREFAB
 
-                    // Invoke SpawnCrate() in specified time
-                    //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
-                }
-                // Beat the game.
-                else
-                {
-                    // call gameover screen 
-                    finalMessage = "Congrats, you beat the game!\n" + timeRemain.ToString() + " leftover secs have been added your final score.";
-                    currentScore += timeRemain;
-                    //TRY_TO_SET_HIGH_SCORE(currentScore);
-                    SceneManager.LoadScene("GameOverScreen");
-                }
+
+                // Level up pop up sound and graphics
+                audioSource.PlayOneShot(levelUpClip);
+                levelChangeText.enabled = true;
+                levelChangeText.text = "Level Up!\nReached Level " + (level + 1).ToString() + "!";
+                Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
             }
-
-            // Check for level down [other conditions include time runs out]
+            // Beat the game.
             else
             {
-                if (level > 0)
-                {
-                    level--;
-                    numDestroyedCrates = 0;
-                    numCorrectlyDestroyedCrates = 0;
-                    numCurrSpawnedCrates = 0;
-                    remainingCrates = maxCrates[level];
-                    remainingSBullets[level] = maxBulletsPerLevel[level];
-                    remainingDBullets[level] = maxBulletsPerLevel[level];
-                    remainingFBullets[level] = maxBulletsPerLevel[level];
-
-                    // Level up pop up sound and graphics
-                    audioSource.PlayOneShot(levelDownClip);
-                    levelChangeText.enabled = true;
-                    levelChangeText.text = "You lost a level!\nNow Level " + (level + 1).ToString() + "!";
-                    Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
-
-                    // Invoke SpawnCrate() in specified time
-                    //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
-                }
-                // Level too low, game over.
-                else
-                {
-                    // call gameover screen
-                    finalMessage = "You missed the goals for too many crates. Try again!";
-                    SceneManager.LoadScene("GameOverScreen");
-                }
-
+                // call gameover screen 
+                finalMessage = "Congrats, you beat the game!\n" + timeRemain.ToString() + " leftover secs have been added your final score.";
+                currentScore += timeRemain;
+                //TRY_TO_SET_HIGH_SCORE(currentScore);
+                SceneManager.LoadScene("GameOverScreen");
             }
         }
+
+        /*// Check for level down [other conditions include time runs out]
+        else
+        {
+            // Check for non-min level.
+            if (level > 0)
+            {
+                level--;
+                numBees = maxBees;
+                numDestroyedBalloons = 0;
+                remainingBalloons = maxBalloons[level];
+
+                // ****** INSTANTIATE A LEVEL PREFAB
+
+
+                // Level up pop up sound and graphics
+                audioSource.PlayOneShot(levelDownClip);
+                levelChangeText.enabled = true;
+                levelChangeText.text = "You lost a level!\nNow Level " + (level + 1).ToString() + "!";
+                Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
+
+                // Invoke SpawnCrate() in specified time
+                //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
+            }
+            // Level too low, game over.
+            else
+            {
+                // call gameover screen
+                finalMessage = "You missed the goals for too many crates. Try again!";
+                SceneManager.LoadScene("GameOverScreen");
+            }
+
+        }*/
+        
+        //// Check for level completion
+        //if (numDestroyedCrates == maxCrates[level])
+        //{
+        //    // Check for level up
+        //    if ((numCorrectlyDestroyedCrates >= goals[level])) 
+        //    {
+        //        if ((level + 1) < levelMax)
+        //        {
+        //            level++;
+        //            numDestroyedCrates = 0;
+        //            numCorrectlyDestroyedCrates = 0;
+        //            numCurrSpawnedCrates = 0;
+        //            remainingCrates = maxCrates[level];
+        //            remainingSBullets[level] = maxBulletsPerLevel[level];
+        //            remainingDBullets[level] = maxBulletsPerLevel[level];
+        //            remainingFBullets[level] = maxBulletsPerLevel[level];
+
+        //            // Level up pop up sound and graphics
+        //            audioSource.PlayOneShot(levelUpClip);
+        //            levelChangeText.enabled = true;
+        //            levelChangeText.text = "Level Up!\nReached Level " + (level+1).ToString() + "!";
+        //            Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
+
+        //            // Invoke SpawnCrate() in specified time
+        //            //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
+        //        }
+        //        // Beat the game.
+        //        else
+        //        {
+        //            // call gameover screen 
+        //            finalMessage = "Congrats, you beat the game!\n" + timeRemain.ToString() + " leftover secs have been added your final score.";
+        //            currentScore += timeRemain;
+        //            //TRY_TO_SET_HIGH_SCORE(currentScore);
+        //            SceneManager.LoadScene("GameOverScreen");
+        //        }
+        //    }
+
+        //    // Check for level down [other conditions include time runs out]
+        //    else
+        //    {
+        //        if (level > 0)
+        //        {
+        //            level--;
+        //            numDestroyedCrates = 0;
+        //            numCorrectlyDestroyedCrates = 0;
+        //            numCurrSpawnedCrates = 0;
+        //            remainingCrates = maxCrates[level];
+        //            remainingSBullets[level] = maxBulletsPerLevel[level];
+        //            remainingDBullets[level] = maxBulletsPerLevel[level];
+        //            remainingFBullets[level] = maxBulletsPerLevel[level];
+
+        //            // Level up pop up sound and graphics
+        //            audioSource.PlayOneShot(levelDownClip);
+        //            levelChangeText.enabled = true;
+        //            levelChangeText.text = "You lost a level!\nNow Level " + (level + 1).ToString() + "!";
+        //            Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
+
+        //            // Invoke SpawnCrate() in specified time
+        //            //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
+        //        }
+        //        // Level too low, game over.
+        //        else
+        //        {
+        //            // call gameover screen
+        //            finalMessage = "You missed the goals for too many crates. Try again!";
+        //            SceneManager.LoadScene("GameOverScreen");
+        //        }
+
+        //    }
+        //}
     }
 
-    public void SHOT_FIRED(int bulletToRemove)
+    /*public void SHOT_FIRED(int bulletToRemove)
     {
         // Reduce the count of the given bullet type
         if (bulletToRemove == pointsPerSBullet && remainingSBullets[level] > 0)
@@ -259,7 +336,7 @@ public class Main : MonoBehaviour
         {
             remainingFBullets[level]--;
         }
-    }
+    }*/
 
     // Amount of points to add or deduct
     public void ON_DESTROY(int scoreChange)

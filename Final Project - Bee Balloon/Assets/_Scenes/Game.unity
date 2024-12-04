@@ -2448,9 +2448,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uitScore: {fileID: 694073777}
   uitLevel: {fileID: 2071035745}
-  uitBees: {fileID: 0}
+  uitBees: {fileID: 1389033624}
   uitCountdown: {fileID: 381732459}
   levelChangeText: {fileID: 646768010}
+  prefabLevels: []
   levelUpClip: {fileID: 8300000, guid: f1bad546873aa49479be0163519108f6, type: 3}
   levelDownClip: {fileID: 8300000, guid: 415df5957af97cb46a584e5a8e213306, type: 3}
   onSuccessClip: {fileID: 8300000, guid: 42bf7057ac7446349b6ff6408892c4d2, type: 3}
@@ -2468,8 +2469,13 @@ MonoBehaviour:
   currentScore: 0
   level: 0
   levelMax: 0
+  numBees: 0
+  maxBees: 0
+  remainingBalloons: 0
+  numDestroyedBalloons: 0
+  pointsPerBalloon: 2
   finalMessage: 
-  goals: 040000000600000008000000
+  maxBalloons: 
   highScore: 0
   numCurrSpawnedCrates: 0
   remainingCrates: 0
@@ -2483,6 +2489,7 @@ MonoBehaviour:
   remainingSBullets: 
   remainingDBullets: 
   remainingFBullets: 
+  goals: 040000000600000008000000
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
