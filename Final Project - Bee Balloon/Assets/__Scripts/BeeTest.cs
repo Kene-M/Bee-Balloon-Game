@@ -17,8 +17,6 @@ public class BeeTest : MonoBehaviour
 
     public Quaternion spawnRotation;
 
-        
-   
     void Start()
     {
         // Main.S.spawnButton.gameObject.SetActive(false);

@@ -702,6 +702,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4428089432317875083, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089432317875083, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_Radius
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089432317875083, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
