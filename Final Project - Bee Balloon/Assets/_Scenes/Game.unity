@@ -657,19 +657,59 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1064200086503262929, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1552097155633157838, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1552097155633157838, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689124358505844261, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3534327721020505178, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3688979271285596437, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688979271285596437, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3728727884109404693, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3728727884109404693, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4005304817839220823, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360501694633629199, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4428089432317875083, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089432317875083, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581496924001744232, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -713,17 +753,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5307049876041357256, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5533450901347532168, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533450901347532168, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998811096498649591, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327339162810092930, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6712315508933133534, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Name
       value: LevelOne
       objectReference: {fileID: 0}
+    - target: {fileID: 6984295676504093663, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8086790835553051350, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086790835553051350, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295749485715099259, guid: 842b21149ccb05c4aa71c3a5f2fe86fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -926,7 +994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Respawn
+  m_text: Spawn Bee
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4368,7 +4436,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963194229}
         m_TargetAssemblyTypeName: Main, Assembly-CSharp
-        m_MethodName: RespawnBee
+        m_MethodName: SpawnBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -74,9 +74,8 @@ public class Main : MonoBehaviour
     {
         S = this; // Define the singleton
 
-        // Level Design.
+        // Initial level design.
         maxBalloons = new int[] { 68 };
-
         level = 0;
         levelMax = 1;
         maxBees = 3;
@@ -88,6 +87,10 @@ public class Main : MonoBehaviour
         startTime = Time.time;
         audioSource = GetComponent<AudioSource>();
         levelChangeText.enabled = false;
+
+        // Spawn button setup.
+        bee.transform.position = new Vector3(0f, -0.5f, -1.12f); 
+        bee.SetActive(false);
 
         //remainingCrates = maxCrates[level];
         //numDestroyedCrates = 0;
@@ -115,6 +118,11 @@ public class Main : MonoBehaviour
 
         // Invoke SpawnCrate() once (in 2 seconds, based on default values)
         //Invoke(nameof(SpawnCrate), 2f);                // a
+    }
+
+    private void Start()
+    {
+        
     }
 
     /*public void SpawnCrate()
@@ -252,7 +260,8 @@ public class Main : MonoBehaviour
         }
     }
 
-    public void RespawnBee()
+    // Event handler for button click.
+    public void SpawnBee()
     {
         bee.SetActive(true);
         spawnButton.gameObject.SetActive(false);

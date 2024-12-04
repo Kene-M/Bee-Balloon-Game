@@ -80,7 +80,8 @@ public class BeeTest : MonoBehaviour
    
     void Start()
     {
-        Main.S.spawnButton.gameObject.SetActive(false);
+        // Main.S.spawnButton.gameObject.SetActive(false);
+
         //maxSpeed = 10f;
         stopDistance = 0.1f;
 
