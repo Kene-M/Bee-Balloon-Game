@@ -54,7 +54,7 @@ public class BarrelControl : MonoBehaviour
             rigidB.velocity = direction * projectileSpeed;
 
             // Shot fired - Decrement '1 point (S)'.
-            Main.S.SHOT_FIRED(projGO.GetComponent<Projectile>().value);
+            //Main.S.SHOT_FIRED(projGO.GetComponent<Projectile>().value);
         }
 
         else if (Input.GetKeyDown(KeyCode.D) && Main.S.remainingDBullets[Main.S.level] > 0) // D (2 point shot)
@@ -75,7 +75,7 @@ public class BarrelControl : MonoBehaviour
             rigidB.velocity = direction * projectileSpeed;
 
             // Shot fired - Decrement '2 points (D)'.
-            Main.S.SHOT_FIRED(projGO.GetComponent<Projectile>().value);
+            //Main.S.SHOT_FIRED(projGO.GetComponent<Projectile>().value);
         }
 
         else if (Input.GetKeyDown(KeyCode.F) && Main.S.remainingFBullets[Main.S.level] > 0) // F (3 point shot)
@@ -96,7 +96,7 @@ public class BarrelControl : MonoBehaviour
             rigidB.velocity = direction * projectileSpeed;
 
             // Shot fired - Decrement '3 points (F)'.
-            Main.S.SHOT_FIRED(projGO.GetComponent<Projectile>().value);
+            //Main.S.SHOT_FIRED(projGO.GetComponent<Projectile>().value);
         }
     }
 }
