@@ -16,7 +16,7 @@ public class MainBeeScript : MonoBehaviour
         if (BeePrefab != null)
         {
             BeePrefab.SetActive(true);
-            spawnButton.gameObject.SetActive(false);
+            spawnButton.gameObject.SetActive(false); 
         }
         else
         {
