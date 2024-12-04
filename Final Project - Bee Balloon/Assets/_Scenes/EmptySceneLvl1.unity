@@ -10796,7 +10796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983195a2ccd40c444af22388b87df777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeePrefab: {fileID: 1709472891}
   spawnButton: {fileID: 1662119876}
 --- !u!1001 &1370167174
 PrefabInstance:
@@ -13616,11 +13615,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4214620395122609291, guid: fd40055686058a04fa039b3568f12b68, type: 3}
   m_PrefabInstance: {fileID: 1709202756}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1709472891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6598476850549558685, guid: f487f5d10c195c047b889a40e97b7471, type: 3}
-  m_PrefabInstance: {fileID: 1043193994}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1758805083
 GameObject:
   m_ObjectHideFlags: 0
@@ -14039,15 +14033,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6102620482109068621, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.31
+      value: -1.154
       objectReference: {fileID: 0}
     - target: {fileID: 6102620482109068621, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.94
+      value: -4.074
       objectReference: {fileID: 0}
     - target: {fileID: 6102620482109068621, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6102620482109068621, guid: 516cb28234c5c3b458588f90c9ac5aaf, type: 3}
       propertyPath: m_LocalRotation.w

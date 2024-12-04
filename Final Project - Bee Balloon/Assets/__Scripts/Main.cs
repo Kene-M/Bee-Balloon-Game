@@ -8,7 +8,7 @@ using TMPro; // For TextMeshPro
 public class Main : MonoBehaviour
 {
     static public Main S;                        // A public singleton for Main
-    private BoundsCheck bndCheck;
+    //private BoundsCheck bndCheck;
 
     [Header("Inscribed")]
     public TextMeshProUGUI uitScore;
@@ -23,18 +23,18 @@ public class Main : MonoBehaviour
     public GameObject[] prefabLevels; // Array of level prefabs
     public AudioClip levelUpClip;
     public AudioClip levelDownClip;
-    public AudioClip onSuccessClip; // Audio to play on successful crate destruction
-    public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
+    //public AudioClip onSuccessClip; // Audio to play on successful crate destruction
+    //public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
 
     // ****** REMOVE *****
-    public TextMeshProUGUI uitHighScore;
-    public TextMeshProUGUI uitSBullets;
-    public TextMeshProUGUI uitDBullets;
-    public TextMeshProUGUI uitFBullets;
-    public TextMeshProUGUI uitCrates;
-    public GameObject[] prefabCrates;               // Array of Crate prefabs 
-    public float crateSpawnPerSecond = 0.5f;  // # Crates spawned/second
-    public float crateInsetDefault = 1.5f;    // Inset from the sides
+    //public TextMeshProUGUI uitHighScore;
+    //public TextMeshProUGUI uitSBullets;
+    //public TextMeshProUGUI uitDBullets;
+    //public TextMeshProUGUI uitFBullets;
+    //public TextMeshProUGUI uitCrates;
+    //public GameObject[] prefabCrates;               // Array of Crate prefabs 
+    //public float crateSpawnPerSecond = 0.5f;  // # Crates spawned/second
+    //public float crateInsetDefault = 1.5f;    // Inset from the sides
 
     [Header("Dynamic")]
     public int currentScore;
@@ -50,25 +50,26 @@ public class Main : MonoBehaviour
     private float startTime; // For countdown.
     private int timeRemain; // For countdown.
     public string finalMessage; // Message to display at end scene.
+    public int highScore;
 
     // Level Related Attributes
     public int[] maxBalloons; // Max number of balloons per level.
 
     // ****** REMOVE *******
-    public int highScore;
-    public int numCurrSpawnedCrates;
-    public int remainingCrates; // Number of crates left to destroy.
-    public int numDestroyedCrates; // TOTAL crates destroyed in this level
-    public int numCorrectlyDestroyedCrates; // For keeping track of the goal conditions. // A crate is correctly destroyed if its crate value reaches exactly 0.
-    public int pointsPerSBullet = 1; // Strength of bullets from input "S"
-    public int pointsPerDBullet = 2;
-    public int pointsPerFBullet = 3;
-    public int[] maxCrates; // Max number of crates to spawn per level
-    public int[] maxBulletsPerLevel;
-    public int[] remainingSBullets; // Number of "S" shots remaining, per level
-    public int[] remainingDBullets;
-    public int[] remainingFBullets;
-    public int[] goals; // Set the goals for each level. Goals are based on number of correctly destroyed crates.
+    
+    //public int numCurrSpawnedCrates;
+    //public int remainingCrates; // Number of crates left to destroy.
+    //public int numDestroyedCrates; // TOTAL crates destroyed in this level
+    //public int numCorrectlyDestroyedCrates; // For keeping track of the goal conditions. // A crate is correctly destroyed if its crate value reaches exactly 0.
+    //public int pointsPerSBullet = 1; // Strength of bullets from input "S"
+    //public int pointsPerDBullet = 2;
+    //public int pointsPerFBullet = 3;
+    //public int[] maxCrates; // Max number of crates to spawn per level
+    //public int[] maxBulletsPerLevel;
+    //public int[] remainingSBullets; // Number of "S" shots remaining, per level
+    //public int[] remainingDBullets;
+    //public int[] remainingFBullets;
+    //public int[] goals; // Set the goals for each level. Goals are based on number of correctly destroyed crates.
 
     void Awake()
     {
@@ -114,7 +115,7 @@ public class Main : MonoBehaviour
 
 
         // Set bndCheck to reference the BoundsCheck component on this GameObject
-        bndCheck = GetComponent<BoundsCheck>();
+        //bndCheck = GetComponent<BoundsCheck>();
 
         // Invoke SpawnCrate() once (in 2 seconds, based on default values)
         //Invoke(nameof(SpawnCrate), 2f);                // a
