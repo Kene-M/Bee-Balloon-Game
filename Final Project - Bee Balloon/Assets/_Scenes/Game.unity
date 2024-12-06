@@ -3033,14 +3033,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 392701905005311385, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 525901025178361704, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1579690032344929735, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
       propertyPath: m_Name
       value: LevelThree
@@ -3087,42 +3079,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1925788529831432906, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015543849190905418, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4144403888378849991, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4739049463524647609, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5151309131233100480, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289086341788343458, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643869553275117279, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535893803901938467, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792986124318986756, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8829323637738072324, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
