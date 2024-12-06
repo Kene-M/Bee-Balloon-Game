@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;   // Enables the loading & reloading of scenes
 using UnityEngine.UI; // For Legacy Text
-using TMPro;
-using System.Runtime.CompilerServices; // For TextMeshPro
+using TMPro; // For TextMeshPro
 
 public class Main : MonoBehaviour
 {
@@ -52,10 +51,7 @@ public class Main : MonoBehaviour
     private float startTime; // For countdown.
     private int timeRemain; // For countdown.
     public string finalMessage; // Message to display at end scene.
-
-    // PlayerPrefs
     public int highScore;
-    public int lastLevel; // Last Level Played
 
     // Level Related Attributes
     public int[] maxBalloons; // Max number of balloons per level.
@@ -308,21 +304,6 @@ public class Main : MonoBehaviour
     void HideLevelChangeGraphic()
     {
         levelChangeText.enabled = false;
-    }
-
-    public void setLatestLevel(int levelToTry)
-    {
-        LAST_LEVEL = levelToTry;
-    }
-
-    public int LAST_LEVEL
-    {
-        get { return lastLevel; }
-        private set
-        {
-            lastLevel = value;
-            PlayerPrefs.SetInt("LastLevel", value);
-        }
     }
 
     /*public void TRY_TO_SET_HIGH_SCORE(int scoreToTry)
