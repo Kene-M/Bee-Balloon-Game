@@ -77,6 +77,7 @@ public class Main : MonoBehaviour
         S = this; // Define the singleton
 
         // Initial level design.
+        //maxBalloons = new int[] { 68, 53, 32 };
         maxBalloons = new int[] { 32, 53, 32 };
         level = 0;
         //levelMax = 1;
@@ -93,6 +94,9 @@ public class Main : MonoBehaviour
 
         levelGameObj = Instantiate<GameObject>(prefabLevels[2]); // Instantiate the first level at the beginning.
         bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
+
+        // ****** REMOVE ********
+        levelGameObj.GetComponentInChildren<Level3Zone1>().SetCenter(bee.transform.position); // set the center to be the bee's position.
 
         // Spawn button setup.
         bee.transform.position = new Vector3(0f, -0.5f, -1.12f); 
@@ -126,10 +130,7 @@ public class Main : MonoBehaviour
         //Invoke(nameof(SpawnCrate), 2f);                // a
     }
 
-    private void Start()
-    {
-        
-    }
+
 
     /*public void SpawnCrate()
     {
@@ -218,6 +219,11 @@ public class Main : MonoBehaviour
                 levelGameObj = Instantiate<GameObject>(prefabLevels[level]);
                 bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
 
+                if (level == 2) // Check if level 3
+                {
+                    levelGameObj.GetComponentInChildren<Level3Zone1>().SetCenter(bee.transform.position); // set the center to be the bee's position.
+                }
+
                 // Level up pop up sound and graphics
                 audioSource.PlayOneShot(levelUpClip);
                 levelChangeText.enabled = true;
@@ -250,6 +256,11 @@ public class Main : MonoBehaviour
                 Destroy(levelGameObj);
                 levelGameObj = Instantiate<GameObject>(prefabLevels[level]);
                 bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
+
+                if (level == 2) // Check if level 3
+                {
+                    levelGameObj.GetComponentInChildren<Level3Zone1>().SetCenter(bee.transform.position); // set the center to be the bee's position.
+                }
 
                 // Level up pop up sound and graphics
                 audioSource.PlayOneShot(levelDownClip);
