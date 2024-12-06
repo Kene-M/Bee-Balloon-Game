@@ -37,6 +37,7 @@ public class Main : MonoBehaviour
     //public float crateInsetDefault = 1.5f;    // Inset from the sides
 
     [Header("Dynamic")]
+    GameObject levelGameObj; // An instantiated prefab of the current level
     public int currentScore;
     public int level;
     public int levelMax;
@@ -76,9 +77,10 @@ public class Main : MonoBehaviour
         S = this; // Define the singleton
 
         // Initial level design.
-        maxBalloons = new int[] { 68 };
+        maxBalloons = new int[] { 32, 53, 32 };
         level = 0;
-        levelMax = 1;
+        //levelMax = 1;
+        levelMax = prefabLevels.Length;
         maxBees = 3;
         numBees = maxBees;
         currentScore = 0;
@@ -88,6 +90,9 @@ public class Main : MonoBehaviour
         startTime = Time.time;
         audioSource = GetComponent<AudioSource>();
         levelChangeText.enabled = false;
+
+        levelGameObj = Instantiate<GameObject>(prefabLevels[2]); // Instantiate the first level at the beginning.
+        bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
 
         // Spawn button setup.
         bee.transform.position = new Vector3(0f, -0.5f, -1.12f); 
@@ -208,8 +213,10 @@ public class Main : MonoBehaviour
                 remainingBalloons = maxBalloons[level];
                 bee.SetActive(true);
 
-                // ****** INSTANTIATE A LEVEL PREFAB
-
+                // INSTANTIATE A LEVEL PREFAB
+                Destroy(levelGameObj);
+                levelGameObj = Instantiate<GameObject>(prefabLevels[level]);
+                bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
 
                 // Level up pop up sound and graphics
                 audioSource.PlayOneShot(levelUpClip);
@@ -239,8 +246,10 @@ public class Main : MonoBehaviour
                 remainingBalloons = maxBalloons[level];
                 bee.SetActive(true);
 
-                // ****** INSTANTIATE A LEVEL PREFAB
-
+                // INSTANTIATE A LEVEL PREFAB
+                Destroy(levelGameObj);
+                levelGameObj = Instantiate<GameObject>(prefabLevels[level]);
+                bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
 
                 // Level up pop up sound and graphics
                 audioSource.PlayOneShot(levelDownClip);
