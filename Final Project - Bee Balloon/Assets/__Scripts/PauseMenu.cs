@@ -7,13 +7,12 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject PausePanel;
     public static bool isPaused = false;
-
+    bool isSpawned; // Check for current bee spawned status.
 
     public void Pause()
     {
-        //Main.S.spawnButton.enabled? ;
-        //targetPoint = (targetPoint == pointA) ? pointB : pointA;
-        //Main.S.spawnButton.enabled = (Main.S.spawnButton.enabled)? false : false;
+        isSpawned = Main.S.spawnButton.isActiveAndEnabled;
+        Main.S.spawnButton.gameObject.SetActive(false);
 
         PausePanel.SetActive(true);
         Time.timeScale = 0;
@@ -22,6 +21,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Continue()
     {
+        Main.S.spawnButton.gameObject.SetActive(isSpawned);
+        
         PausePanel.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;
