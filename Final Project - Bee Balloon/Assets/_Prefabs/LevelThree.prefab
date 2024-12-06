@@ -9938,6 +9938,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 8a53c54737dc69a4d812b2be9aef5908, type: 2}
+    - target: {fileID: -328752558928968282, guid: f487f5d10c195c047b889a40e97b7471, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 777283167892302757, guid: f487f5d10c195c047b889a40e97b7471, type: 3}
       propertyPath: m_Enabled
       value: 0
