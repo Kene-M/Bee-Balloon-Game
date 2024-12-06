@@ -1,9 +1,25 @@
+/* TO-DO
+ * Add project description file to github.
+ * Hard code the initial level spawn (button, bee) positions.
+ * ParticleSystem for destroying stuff.
+ * Implement some player feedback boxes.
+ * Save above and other data to file.
+ */
+
+// FOR PARTICLE - DESTROY
+//// Instantiate a particlesystem at the crates position
+//GameObject effect = Instantiate(Main.S.onDeathParticles, transform.transform.Find("Crate").gameObject.transform.position, Quaternion.identity);
+//ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+//ps.Play(); // Play the ParticleSystem
+//Destroy(effect, 2f); // Destroy Particle System in 2 secs
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;   // Enables the loading & reloading of scenes
 using UnityEngine.UI; // For Legacy Text
-using TMPro; // For TextMeshPro
+using TMPro;
+using System.Runtime.CompilerServices; // For TextMeshPro
 
 public class Main : MonoBehaviour
 {
@@ -13,7 +29,7 @@ public class Main : MonoBehaviour
     [Header("Inscribed")]
     public TextMeshProUGUI uitScore;
     public TextMeshProUGUI uitLevel;
-    public TextMeshProUGUI uitBees;
+    public TextMeshProUGUI uitBees;  
     public TextMeshProUGUI uitCountdown;
     public TextMeshProUGUI levelChangeText;
     public Button spawnButton;
@@ -24,7 +40,7 @@ public class Main : MonoBehaviour
     public AudioClip levelUpClip;
     public AudioClip levelDownClip;
     //public AudioClip onSuccessClip; // Audio to play on successful crate destruction
-    //public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
+    public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
 
     // ****** REMOVE *****
     //public TextMeshProUGUI uitHighScore;
@@ -46,18 +62,22 @@ public class Main : MonoBehaviour
     public int remainingBalloons; // Number of balloons currently left to destroy.
     public int numDestroyedBalloons; // TOTAL crates destroyed in this level
     public int pointsPerBalloon = 2; // Points per balloon pop
-    
+
     private AudioSource audioSource; // Audio on level up
     private float startTime; // For countdown.
     private int timeRemain; // For countdown.
     public string finalMessage; // Message to display at end scene.
+
+    // PlayerPrefs
     public int highScore;
+    public string lastLevel; // Last Level Played
 
     // Level Related Attributes
     public int[] maxBalloons; // Max number of balloons per level.
+    public Vector3[] spawnPositions; // The inital spawn positions of the bees in each level.
 
     // ****** REMOVE *******
-    
+
     //public int numCurrSpawnedCrates;
     //public int remainingCrates; // Number of crates left to destroy.
     //public int numDestroyedCrates; // TOTAL crates destroyed in this level
@@ -77,10 +97,11 @@ public class Main : MonoBehaviour
         S = this; // Define the singleton
 
         // Initial level design.
-        //maxBalloons = new int[] { 68, 53, 32 };
-        maxBalloons = new int[] { 32, 53, 32 };
+        //maxBalloons = new int[] { 68, 53, 32, 80 };
+        maxBalloons = new int[] { 80, 53, 32, 80 };
+        // spawnPositions = new Vector3[] { }; ******** TODO *****
         level = 0;
-        //levelMax = 1;
+        SetLatestLevel((level + 1).ToString()); // PlayerPrefs
         levelMax = prefabLevels.Length;
         maxBees = 3;
         numBees = maxBees;
@@ -92,27 +113,22 @@ public class Main : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         levelChangeText.enabled = false;
 
-        levelGameObj = Instantiate<GameObject>(prefabLevels[2]); // Instantiate the first level at the beginning.
+        //levelGameObj = Instantiate<GameObject>(prefabLevels[0]); // Instantiate the first level at the beginning.
+        levelGameObj = Instantiate<GameObject>(prefabLevels[3]); // Instantiate the first level at the beginning.
         bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
 
-        // ****** REMOVE ********
-        levelGameObj.GetComponentInChildren<Level3Zone1>().SetCenter(bee.transform.position); // set the center to be the bee's position.
-
         // Spawn button setup.
-        bee.transform.position = new Vector3(0f, -0.5f, -1.12f); 
+        bee.transform.position = new Vector3(0f, -0.5f, -1.12f);
         bee.SetActive(false);
 
-        //remainingCrates = maxCrates[level];
-        //numDestroyedCrates = 0;
-        //numCorrectlyDestroyedCrates = 0;
-        
-        /* // Level design
-        maxBulletsPerLevel = new int[] { 50, 30, 20 };
-        remainingSBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
-        remainingDBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
-        remainingFBullets = new int[] { maxBulletsPerLevel[0], maxBulletsPerLevel[1], maxBulletsPerLevel[2] };
-        maxCrates = new int[] { 9, 12, 15 };
-        goals = new int[] { 5, 7, 8 }; // Destroy more than half of the crates to reach this goal*/
+        // PlayerPrefs for lastLevel.
+        if (PlayerPrefs.HasKey("LastLevel"))
+        {
+            LAST_LEVEL = PlayerPrefs.GetString("LastLevel");
+        }
+        // Assign the latest level to lastLevel
+        PlayerPrefs.SetString("LastLevel", LAST_LEVEL);
+
 
         // Playerprefs for highscore
         /*if (PlayerPrefs.HasKey("HighScore"))
@@ -167,7 +183,7 @@ public class Main : MonoBehaviour
     void UpdateGUI()
     {
         uitScore.text = "Score: " + currentScore.ToString();
-        uitLevel.text = "Level: " + (level+1).ToString() + " of " + levelMax.ToString();
+        uitLevel.text = "Level: " + (level + 1).ToString() + " of " + levelMax.ToString();
         uitBees.text = "Bees Left: " + numBees.ToString();
 
         //uitSBullets.text = "S (1): " + remainingSBullets[level].ToString();
@@ -214,8 +230,9 @@ public class Main : MonoBehaviour
             if ((level + 1) < levelMax)
             {
                 level++;
+                SetLatestLevel((level + 1).ToString()); // PlayerPrefs
                 numBees = maxBees;
-                numDestroyedBalloons = 0; 
+                numDestroyedBalloons = 0;
                 remainingBalloons = maxBalloons[level];
                 bee.SetActive(true);
 
@@ -252,8 +269,9 @@ public class Main : MonoBehaviour
             if (level > 0)
             {
                 level--;
+                SetLatestLevel((level + 1).ToString()); // PlayerPrefs
                 numBees = maxBees;
-                numDestroyedBalloons = 0; 
+                numDestroyedBalloons = 0;
                 remainingBalloons = maxBalloons[level];
                 bee.SetActive(true);
 
@@ -304,6 +322,21 @@ public class Main : MonoBehaviour
     void HideLevelChangeGraphic()
     {
         levelChangeText.enabled = false;
+    }
+
+    public void SetLatestLevel(string levelToTry)
+    {
+        LAST_LEVEL = levelToTry;
+    }
+
+    public string LAST_LEVEL
+    {
+        get { return lastLevel; }
+        private set
+        {
+            lastLevel = value;
+            PlayerPrefs.SetString("LastLevel", value);
+        }
     }
 
     /*public void TRY_TO_SET_HIGH_SCORE(int scoreToTry)
