@@ -202,6 +202,11 @@ public class Main : MonoBehaviour
     {
         UpdateGUI();
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu.S.Pause();
+        }
+
         // Check for level completion
         if (numDestroyedBalloons == maxBalloons[level])
         {
