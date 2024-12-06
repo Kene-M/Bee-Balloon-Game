@@ -10,4 +10,9 @@ public class ButtonTest : MonoBehaviour
     {
         SceneManager.LoadScene(SceneName);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
