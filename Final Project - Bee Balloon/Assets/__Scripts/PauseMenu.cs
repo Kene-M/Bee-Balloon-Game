@@ -19,11 +19,13 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        /*if (isPaused)
+        //for the esc button, make sure if you press it
+        //if it is paused that it continues instead of pauses
+        if (isPaused)
         {
             Continue();
             return;
-        }*/
+        }
 
         isSpawned = Main.S.spawnButton.isActiveAndEnabled;
         Main.S.spawnButton.gameObject.SetActive(false);
