@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;   // Enables the loading & reloading of scenes
 using UnityEngine.UI; // For Legacy Text
 using TMPro;
-using System.Runtime.CompilerServices; // For TextMeshPro
+using System.Runtime.CompilerServices;
 
 public class Main : MonoBehaviour
 {
@@ -52,8 +52,13 @@ public class Main : MonoBehaviour
     public string finalMessage; // Message to display at end scene.
 
     // PlayerPrefs
-    public int highScore;
+    public int highScore; // Not implemented
     public string lastLevel; // Last Level Played
+    public int playerID;
+
+    // To save to file
+    public string timePlayed;
+    public int durationPlayed;
 
     // Level Related Attributes
     public int[] maxBalloons; // Max number of balloons per level.
@@ -86,6 +91,9 @@ public class Main : MonoBehaviour
         spawnButton.GetComponent<RectTransform>().anchoredPosition = spawnPositions[level]; // spawn button setup
         bee.SetActive(false);
 
+        // File Save
+        timePlayed = System.DateTime.Now.ToString();
+        
         // PlayerPrefs for lastLevel.
         if (PlayerPrefs.HasKey("LastLevel"))
         {
@@ -94,6 +102,17 @@ public class Main : MonoBehaviour
         // Assign the latest level to lastLevel
         PlayerPrefs.SetString("LastLevel", LAST_LEVEL);
 
+        // PlayerPrefs for PlayerID.
+        if (PlayerPrefs.HasKey("PlayerID"))
+        {
+            Main.S.playerID = PlayerPrefs.GetInt("PlayerID");
+        }
+        else
+        {
+            Main.S.playerID = Random.Range(1000, 10000); // Generate a new 4 digit ID.
+        }
+        // Assign the playerID
+        PlayerPrefs.SetInt("PlayerID", Main.S.playerID);
 
         // Playerprefs for highscore
         /*if (PlayerPrefs.HasKey("HighScore"))
@@ -125,6 +144,8 @@ public class Main : MonoBehaviour
             uitCountdown.text = "Countdown has finished";
 
             // Other conditions to end game: Timer runs out.
+            durationPlayed = timeElapsed; // For file saving
+
             finalMessage = "You ran out of time. Try again!";
             SceneManager.LoadScene("GameOverScreen");
         }
@@ -178,6 +199,9 @@ public class Main : MonoBehaviour
             else
             {
                 // call gameover screen 
+                int timeElapsed = (int)(Time.time - startTime);
+                durationPlayed = timeElapsed; // File save
+
                 finalMessage = "Congrats, you beat the game!\n" + timeRemain.ToString() + " leftover secs have been added your final score.";
                 currentScore += timeRemain;
                 //TRY_TO_SET_HIGH_SCORE(currentScore);
@@ -219,6 +243,9 @@ public class Main : MonoBehaviour
             else
             {
                 // call gameover screen
+                int timeElapsed = (int)(Time.time - startTime);
+                durationPlayed = timeElapsed; // File save
+
                 finalMessage = "You used up all your lives. Try again!";
                 SceneManager.LoadScene("GameOverScreen");
             }
