@@ -1,17 +1,8 @@
 /* TO-DO
- * Add project description file to github.
- * Hard code the initial level spawn (button, bee) positions.
- * ParticleSystem for destroying stuff.
  * Implement some player feedback boxes.
- * Save above and other data to file.
+ * Save above and other data to file. - PlayerPrefs for the ID system???
  */
 
-// FOR PARTICLE - DESTROY
-//// Instantiate a particlesystem at the crates position
-//GameObject effect = Instantiate(Main.S.onDeathParticles, transform.transform.Find("Crate").gameObject.transform.position, Quaternion.identity);
-//ParticleSystem ps = effect.GetComponent<ParticleSystem>();
-//ps.Play(); // Play the ParticleSystem
-//Destroy(effect, 2f); // Destroy Particle System in 2 secs
 
 using System.Collections;
 using System.Collections.Generic;
@@ -42,16 +33,6 @@ public class Main : MonoBehaviour
     //public AudioClip onSuccessClip; // Audio to play on successful crate destruction
     public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
 
-    // ****** REMOVE *****
-    //public TextMeshProUGUI uitHighScore;
-    //public TextMeshProUGUI uitSBullets;
-    //public TextMeshProUGUI uitDBullets;
-    //public TextMeshProUGUI uitFBullets;
-    //public TextMeshProUGUI uitCrates;
-    //public GameObject[] prefabCrates;               // Array of Crate prefabs 
-    //public float crateSpawnPerSecond = 0.5f;  // # Crates spawned/second
-    //public float crateInsetDefault = 1.5f;    // Inset from the sides
-
     [Header("Dynamic")]
     GameObject levelGameObj; // An instantiated prefab of the current level
     public int currentScore;
@@ -74,32 +55,15 @@ public class Main : MonoBehaviour
 
     // Level Related Attributes
     public int[] maxBalloons; // Max number of balloons per level.
-    public Vector3[] spawnPositions; // The inital spawn positions of the bees in each level.
-
-    // ****** REMOVE *******
-
-    //public int numCurrSpawnedCrates;
-    //public int remainingCrates; // Number of crates left to destroy.
-    //public int numDestroyedCrates; // TOTAL crates destroyed in this level
-    //public int numCorrectlyDestroyedCrates; // For keeping track of the goal conditions. // A crate is correctly destroyed if its crate value reaches exactly 0.
-    //public int pointsPerSBullet = 1; // Strength of bullets from input "S"
-    //public int pointsPerDBullet = 2;
-    //public int pointsPerFBullet = 3;
-    //public int[] maxCrates; // Max number of crates to spawn per level
-    //public int[] maxBulletsPerLevel;
-    //public int[] remainingSBullets; // Number of "S" shots remaining, per level
-    //public int[] remainingDBullets;
-    //public int[] remainingFBullets;
-    //public int[] goals; // Set the goals for each level. Goals are based on number of correctly destroyed crates.
+    Vector2[] spawnPositions; // The inital/reset positions of the respawn button.
 
     void Awake()
     {
         S = this; // Define the singleton
 
         // Initial level design.
-        //maxBalloons = new int[] { 68, 53, 32, 80 };
-        maxBalloons = new int[] { 80, 53, 32, 80 };
-        // spawnPositions = new Vector3[] { }; ******** TODO *****
+        maxBalloons = new int[] { 68, 53, 32, 80 };
+        spawnPositions = new Vector2[] { new Vector2(1.1f, 2.9f), new Vector2(-253f, -3f), new Vector2(9.8f, 36.4f), new Vector2(-317f, 116f) };
         level = 0;
         SetLatestLevel((level + 1).ToString()); // PlayerPrefs
         levelMax = prefabLevels.Length;
@@ -113,12 +77,11 @@ public class Main : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         levelChangeText.enabled = false;
 
-        //levelGameObj = Instantiate<GameObject>(prefabLevels[0]); // Instantiate the first level at the beginning.
-        levelGameObj = Instantiate<GameObject>(prefabLevels[3]); // Instantiate the first level at the beginning.
+        // Level instance setup
+        levelGameObj = Instantiate<GameObject>(prefabLevels[level]); // Instantiate the first level at the beginning.
         bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
-
-        // Spawn button setup.
-        bee.transform.position = new Vector3(0f, -0.5f, -1.12f);
+        //bee.transform.position = new Vector3(0f, -0.5f, -1.12f);
+        spawnButton.GetComponent<RectTransform>().anchoredPosition = spawnPositions[level]; // spawn button setup
         bee.SetActive(false);
 
         // PlayerPrefs for lastLevel.
@@ -137,47 +100,7 @@ public class Main : MonoBehaviour
         }
         // Assign the high score to HighScore
         PlayerPrefs.SetInt("HighScore", SCORE);*/
-
-
-        // Set bndCheck to reference the BoundsCheck component on this GameObject
-        //bndCheck = GetComponent<BoundsCheck>();
-
-        // Invoke SpawnCrate() once (in 2 seconds, based on default values)
-        //Invoke(nameof(SpawnCrate), 2f);                // a
     }
-
-
-
-    /*public void SpawnCrate()
-    {
-        // Pick a random Crate prefab to instantiate
-        int ndx = Random.Range(0, prefabCrates.Length);                     // b
-        GameObject go = Instantiate<GameObject>(prefabCrates[ndx]);     // c
-
-        // Position the Crate above the screen with a random x position
-        float crateInset = crateInsetDefault;                                // d
-        if (go.GetComponent<BoundsCheck>() != null)
-        {                        // e
-            crateInset = Mathf.Abs(go.GetComponent<BoundsCheck>().radius);
-        }
-
-        // Set the initial position for the spawned Crate                    // f
-        Vector3 pos = Vector3.zero;
-        float xMin = -bndCheck.camWidth + crateInset;
-        float xMax = bndCheck.camWidth - crateInset;
-        pos.x = Random.Range(xMin, xMax);
-        pos.y = bndCheck.camHeight + crateInset;
-        go.transform.position = pos;
-
-        numCurrSpawnedCrates++; // Count spawned crate
-
-        // Invoke SpawnCrate() again
-        if (numCurrSpawnedCrates < maxCrates[level])
-        {
-            // Invoke SpawnCrate() in specified time
-            Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);                // g
-        }
-    }*/
 
     // For showing the data in the GUITexts
     void UpdateGUI()
@@ -185,11 +108,6 @@ public class Main : MonoBehaviour
         uitScore.text = "Score: " + currentScore.ToString();
         uitLevel.text = "Level: " + (level + 1).ToString() + " of " + levelMax.ToString();
         uitBees.text = "Bees Left: " + numBees.ToString();
-
-        //uitSBullets.text = "S (1): " + remainingSBullets[level].ToString();
-        //uitDBullets.text = "D (2): " + remainingDBullets[level].ToString();
-        //uitFBullets.text = "F (3): " + remainingFBullets[level].ToString();
-        //uitCrates.text = "Crates Left: " + remainingCrates.ToString();
 
         // Countdown logic
         int timeElapsed = (int)(Time.time - startTime);
@@ -234,12 +152,14 @@ public class Main : MonoBehaviour
                 numBees = maxBees;
                 numDestroyedBalloons = 0;
                 remainingBalloons = maxBalloons[level];
-                bee.SetActive(true);
 
                 // INSTANTIATE A LEVEL PREFAB
                 Destroy(levelGameObj);
                 levelGameObj = Instantiate<GameObject>(prefabLevels[level]);
                 bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
+                spawnButton.GetComponent<RectTransform>().anchoredPosition = spawnPositions[level]; // spawn button setup
+                spawnButton.gameObject.SetActive(true);
+                bee.SetActive(false);
 
                 if (level == 2) // Check if level 3
                 {
@@ -273,12 +193,14 @@ public class Main : MonoBehaviour
                 numBees = maxBees;
                 numDestroyedBalloons = 0;
                 remainingBalloons = maxBalloons[level];
-                bee.SetActive(true);
 
                 // INSTANTIATE A LEVEL PREFAB
                 Destroy(levelGameObj);
                 levelGameObj = Instantiate<GameObject>(prefabLevels[level]);
                 bee = levelGameObj.GetComponentInChildren<BeeTest>().gameObject; // get the bee child gameobject
+                spawnButton.GetComponent<RectTransform>().anchoredPosition = spawnPositions[level]; // spawn button setup
+                spawnButton.gameObject.SetActive(true);
+                bee.SetActive(false);
 
                 if (level == 2) // Check if level 3
                 {
@@ -290,9 +212,6 @@ public class Main : MonoBehaviour
                 levelChangeText.enabled = true;
                 levelChangeText.text = "You lost a level!\nNow Level " + (level + 1).ToString() + "!";
                 Invoke(nameof(HideLevelChangeGraphic), 2f); // Hide after 2 seconds
-
-                // Invoke SpawnCrate() in specified time
-                //Invoke(nameof(SpawnCrate), 1f / crateSpawnPerSecond);
             }
             // Level too low, game over.
             else

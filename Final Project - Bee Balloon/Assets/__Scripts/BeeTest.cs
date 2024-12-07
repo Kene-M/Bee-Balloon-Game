@@ -80,6 +80,12 @@ public class BeeTest : MonoBehaviour
             // Life counter decrement
             Main.S.numBees--;
 
+            // Instantiate a particlesystem at the bee's position
+            GameObject effect = Instantiate(Main.S.onDeathParticles, transform.position, Quaternion.identity);
+            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            ps.Play(); // Play the ParticleSystem
+            Destroy(effect, 2f); // Destroy Particle System in 2 secs
+
             // Reset position of bee and prompt a restart button.
             transform.position = spawnPosition;
             transform.rotation = spawnRotation;
@@ -96,6 +102,12 @@ public class BeeTest : MonoBehaviour
 
             // Award points
             Main.S.AwardPoints();
+
+            // Instantiate a particlesystem at the balloon's position
+            GameObject effect = Instantiate(Main.S.onDeathParticles, other.gameObject.transform.position, Quaternion.identity);
+            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            ps.Play(); // Play the ParticleSystem
+            Destroy(effect, 2f); // Destroy Particle System in 2 secs
         }
 
         // Check if bomb 
@@ -107,6 +119,12 @@ public class BeeTest : MonoBehaviour
 
             // Life counter decrement
             Main.S.numBees--;
+
+            // Instantiate a particlesystem at the bee's position
+            GameObject effect = Instantiate(Main.S.onDeathParticles, transform.position, Quaternion.identity);
+            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            ps.Play(); // Play the ParticleSystem
+            Destroy(effect, 2f); // Destroy Particle System in 2 secs
 
             // Reset position of bee and prompt a restart button.
             transform.position = spawnPosition;
