@@ -119,7 +119,7 @@ public class BeeTest : MonoBehaviour
         {
             
             //Destroy(gameObject);
-            Debug.Log("Bee collided with a bomb!");
+           // Debug.Log("Bee collided with a bomb!");
 
             // Life counter decrement
             Main.S.numBees--;
@@ -130,7 +130,7 @@ public class BeeTest : MonoBehaviour
             //ps.Play(); // Play the ParticleSystem
             //Destroy(effect, 2f); // Destroy Particle System in 2 secs
 
-            GameObject effect = Instantiate(Main.S.bombParticles, transform.position, Quaternion.identity);
+            GameObject effect = Instantiate(Main.S.bombParticles, other.transform.position, Quaternion.identity);
             Destroy(other.transform.parent.gameObject);
             Destroy(effect, 2f);
 
