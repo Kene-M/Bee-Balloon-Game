@@ -81,10 +81,14 @@ public class BeeTest : MonoBehaviour
             Main.S.numBees--;
 
             // Instantiate a particlesystem at the bee's position
-            GameObject effect = Instantiate(Main.S.onDeathParticles, transform.position, Quaternion.identity);
-            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
-            ps.Play(); // Play the ParticleSystem
-            Destroy(effect, 2f); // Destroy Particle System in 2 secs
+            //GameObject effect = Instantiate(Main.S.onDeathParticles, transform.position, Quaternion.identity);
+            //ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            //ps.Play(); // Play the ParticleSystem
+            //Destroy(effect, 2f); // Destroy Particle System in 2 secs
+
+            GameObject effect = Instantiate(Main.S.redZoneParticles, transform.position, Quaternion.identity);
+            
+            Destroy(effect, 2f);
 
             // Reset position of bee and prompt a restart button.
             transform.position = spawnPosition;
@@ -113,18 +117,22 @@ public class BeeTest : MonoBehaviour
         // Check if bomb 
         else if (other.CompareTag("Bomb"))
         {
-            Destroy(other.transform.parent.gameObject);
+            
             //Destroy(gameObject);
             Debug.Log("Bee collided with a bomb!");
 
             // Life counter decrement
             Main.S.numBees--;
 
-            // Instantiate a particlesystem at the bee's position
-            GameObject effect = Instantiate(Main.S.onDeathParticles, transform.position, Quaternion.identity);
-            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
-            ps.Play(); // Play the ParticleSystem
-            Destroy(effect, 2f); // Destroy Particle System in 2 secs
+            //// Instantiate a particlesystem at the bee's position
+            //GameObject effect = Instantiate(Main.S.onDeathParticles, transform.position, Quaternion.identity);
+            //ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            //ps.Play(); // Play the ParticleSystem
+            //Destroy(effect, 2f); // Destroy Particle System in 2 secs
+
+            GameObject effect = Instantiate(Main.S.bombParticles, transform.position, Quaternion.identity);
+            Destroy(other.transform.parent.gameObject);
+            Destroy(effect, 2f);
 
             // Reset position of bee and prompt a restart button.
             transform.position = spawnPosition;

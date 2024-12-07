@@ -555,8 +555,8 @@ RectTransform:
   - {fileID: 889799398}
   - {fileID: 1576813304}
   - {fileID: 867176002}
-  - {fileID: 1936462194}
   - {fileID: 2021095871}
+  - {fileID: 1936462194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1340,6 +1340,8 @@ MonoBehaviour:
   levelUpClip: {fileID: 8300000, guid: f1bad546873aa49479be0163519108f6, type: 3}
   levelDownClip: {fileID: 8300000, guid: 415df5957af97cb46a584e5a8e213306, type: 3}
   onDeathParticles: {fileID: 8419597956496566910, guid: bff108a34c5dd52499e20a688de08562, type: 3}
+  bombParticles: {fileID: 6532180273515238423, guid: f4f589fba15fa5f41bb3e8788310582b, type: 3}
+  redZoneParticles: {fileID: 4390290350794754678, guid: f12eecf8365c910409da1995d5112fe9, type: 3}
   currentScore: 0
   level: 0
   levelMax: 0
@@ -1784,6 +1786,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1329596970933179060, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
+      propertyPath: rotationCenter.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329596970933179060, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
+      propertyPath: rotationCenter.y
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1579690032344929735, guid: 2d5b11c9959b9aa4fb5f23f12102eae8, type: 3}
       propertyPath: m_Name
       value: LevelThree
@@ -2677,8 +2687,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278684584
-  m_fontColor: {r: 0.6603774, g: 0.543311, b: 0.026996441, a: 1}
+    rgba: 4280737535
+  m_fontColor: {r: 1, g: 0.87058824, b: 0.1490565, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

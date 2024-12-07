@@ -31,7 +31,9 @@ public class Main : MonoBehaviour
     public AudioClip levelUpClip;
     public AudioClip levelDownClip;
     //public AudioClip onSuccessClip; // Audio to play on successful crate destruction
-    public GameObject onDeathParticles; // Particle system prefabs to instantiate on crate destruction
+    public GameObject onDeathParticles; // Particle system prefabs to instantiate on bee destruction
+    public GameObject bombParticles;
+    public GameObject redZoneParticles;
 
     [Header("Dynamic")]
     GameObject levelGameObj; // An instantiated prefab of the current level
@@ -161,10 +163,10 @@ public class Main : MonoBehaviour
                 spawnButton.gameObject.SetActive(true);
                 bee.SetActive(false);
 
-                if (level == 2) // Check if level 3
-                {
-                    levelGameObj.GetComponentInChildren<Level3Zone1>().SetCenter(bee.transform.position); // set the center to be the bee's position.
-                }
+                //if (level == 2) // Check if level 3
+                //{
+                //    levelGameObj.GetComponentInChildren<Level3Zone1>().SetCenter(bee.transform.position); // set the center to be the bee's position.
+                //}
 
                 // Level up pop up sound and graphics
                 audioSource.PlayOneShot(levelUpClip);
