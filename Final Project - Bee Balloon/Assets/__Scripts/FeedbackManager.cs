@@ -12,7 +12,7 @@ public class FeedbackManager : MonoBehaviour
         // Define the file path.
         // Typically is "C:\Users\<YourUsername>\AppData\LocalLow\<YourCompanyName>\<YourGameName>\Feedback.txt" on Windows
         filePath = Path.Combine(Application.persistentDataPath, "Feedback.txt");
-
+        Debug.Log(filePath);
         //filePath = Directory.GetCurrentDirectory() + "\\Assets\\Feedback.txt"; // Project Pane
 
         // SAVE PLAYER DATA
